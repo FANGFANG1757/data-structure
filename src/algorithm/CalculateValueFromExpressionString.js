@@ -1,20 +1,6 @@
-// (1+(( 2 + 3 ) * ( 4 * 5 ) ) ) will return 101
-class Stack {
-  constructor() {
-    this.elements = [];
-  }
+import { Stack } from "../structures/stack.js";
 
-  push(element) {
-    this.elements.push(element);
-  }
-
-  pop() {
-    const result = this.elements.pop();
-    return result;
-  }
-}
-
-function CalExp(str) {
+function calExp(str) {
   const ops = new Stack();
   const vals = new Stack();
 
@@ -42,15 +28,11 @@ function CalExp(str) {
         vals.push(val2 / val1);
       }
     } else {
-      vals.push(Number(str[i]));
+      vals.push(Number(/\d/.test(str[i - 1]) ? vals.pop() + str[i] : str[i]));
     }
-    console.log(`char -> ${str[i]}`);
-    console.log("val stack -> ", vals.elements);
-    console.log("op stack -> ", ops.elements);
-    console.log("===========================");
   }
   return vals.pop();
 }
 
-const expression1 = "(1 + ((2 + 33) * (4 * 5)))";
-console.log(CalExp(expression1));
+const expression1 = "(198 + ((295679 + 33333) * (4 * 5)))";
+console.log(calExp(expression1));
