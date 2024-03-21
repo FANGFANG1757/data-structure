@@ -1,7 +1,6 @@
-class myQueue{
-    constructor(){
-        this.elements = [];
-    }
+class MyQueue{
+    elements = [];
+    
     push(element){ 
         this.elements.push(element);
 
@@ -12,10 +11,11 @@ class myQueue{
     }
 }
 
-const queue = new myQueue();
-queue.push(1);
-queue.push(2);
-queue.push(3);
-console.log(queue);
-queue.shift();
-console.log(queue);
+const QUEUE = new MyQueue();
+QUEUE.push(1);
+QUEUE.push(2);
+QUEUE.push(3);
+QUEUE.shift();
+
+
+export default MyQueue;
