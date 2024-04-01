@@ -1,18 +1,13 @@
 import { Stack } from "../structures/stack.js";
 
-function calExp(str) {
+export function calculateArithmeticExp(str) {
   const ops = new Stack();
   const vals = new Stack();
 
   for (let i = 0; i < str.length; i++) {
-    if (str[i] === "(" || str[i] === " ") {
-    } else if (str[i] === "+") {
-      ops.push(str[i]);
-    } else if (str[i] === "-") {
-      ops.push(str[i]);
-    } else if (str[i] === "*") {
-      ops.push(str[i]);
-    } else if (str[i] === "/") {
+    if (["(", " "].includes(str[i])) {
+      continue;
+    } else if (["+", "-", "*", "/"].includes(str[i])) {
       ops.push(str[i]);
     } else if (str[i] === ")") {
       const op = ops.pop();
@@ -33,6 +28,3 @@ function calExp(str) {
   }
   return vals.pop();
 }
-
-const expression1 = "(198 + ((295679 + 33333) * (4 * 5)))";
-console.log(calExp(expression1));
